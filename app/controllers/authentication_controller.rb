@@ -9,6 +9,7 @@ class AuthenticationController < ApplicationController
         time = Time.now + 24.hours.to_i
         render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
                        username: @user.username }, status: :ok
+        # render json: { data: ActiveModelSerializers::SerializableResource.new(@user, serializer: AuthenticationSerializer),type: 'sucess'}, status: :ok               
       else
         render json: { error: 'unauthorized' }, status: :unauthorized
       end
